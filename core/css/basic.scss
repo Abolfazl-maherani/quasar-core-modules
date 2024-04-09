@@ -1,0 +1,9 @@
+html {
+  font-size: 14px;
+}
+
+@media (max-width: $breakpoint-xs-max) {
+  html {
+    font-size: 10px;
+  }
+}
