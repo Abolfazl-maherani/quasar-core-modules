@@ -8,7 +8,7 @@ import { useCoreStore } from "../stores/coreStore";
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-
+console.log("hell");
 const axiosInstance = axios.create();
 
 export default boot(({ app, store, ssrContext }) => {
