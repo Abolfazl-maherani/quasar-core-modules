@@ -17,6 +17,10 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  attrGroupBtn: {
+    type: Object,
+    default: () => {},
+  },
   moduleName: {
     type: String,
     default: "core",
@@ -31,9 +35,14 @@ const isHorizontal = computed(() => props.mode === "horizontal");
 </script>
 
 <template>
-  <QToolbar v-if="isHorizontal">
+  <QToolbar class="items-stretch" v-if="isHorizontal">
     <div class="col-12 flex">
-      <QBtnGroup spread flat unelevated class="full-width bg-transparent">
+      <QBtnGroup
+        flat
+        unelevated
+        class="full-width bg-transparent"
+        v-bind="attrGroupBtn"
+      >
         <slot name="before-nav-item" :props="attrNavItem" />
         <NavigationItemHorizontal
           :color="color"
