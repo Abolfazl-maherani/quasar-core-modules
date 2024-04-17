@@ -1,9 +1,12 @@
 html {
   font-size: 14px;
 }
-
+.q-btn.btn--no-hover .q-focus-helper{
+  display: none;
+}
 @media (max-width: $breakpoint-xs-max) {
   html {
     font-size: 10px;
   }
 }
+

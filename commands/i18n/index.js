@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const packagejson = require("../../../../../package.json");
-const program = require("commander");
+const { program } = require("commander");
 const { generate, cache } = require("./commands.js");
 
 const helpText = `
