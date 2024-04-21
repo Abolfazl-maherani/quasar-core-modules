@@ -22,7 +22,10 @@
 
   @return $string;
 }
+.btn-right-ico-to-left .q-btn__content{
+  flex-direction: row-reverse;
 
+}
 .bg-primary-variant {
   background: rgba($primary, 0.2) !important;
 }

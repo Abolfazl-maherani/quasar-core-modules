@@ -76,6 +76,7 @@ export const rawSvgToSvgFormat = (rawSvg) => {
     "stroke-linecap",
     "stroke-linejoin",
     "fill",
+    "opacity",
   ];
   const svgTransformAttributes = ["transform"];
   const jsonToStyle = (obj, attrs) => {
@@ -86,12 +87,32 @@ export const rawSvgToSvgFormat = (rawSvg) => {
 
   // Get svg string content
   // Parse svg string to object
-  const svgObj = parseSync(rawSvg);
+  let svgObj = parseSync(rawSvg);
+  console.log(svgObj);
+  let formatSvgObj = {
+    ...svgObj,
+    children: [],
+  };
+
+  svgObj.children.forEach((item) => {
+    if (item.name === "g") {
+      formatSvgObj.children.push(
+        ...item.children?.map((child) => ({
+          ...child,
+          attributes: {
+            ...(child?.attributes || {}),
+            ...(item?.attributes || {}),
+          },
+        }))
+      );
+    } else formatSvgObj.children = svgObj.children;
+  });
+
   // Extract viewBox and styles
-  const svgViewBox = svgObj.attributes.viewBox;
-  const svgStyle = jsonToStyle(svgObj.attributes, svgStyleAttributes);
+  const svgViewBox = formatSvgObj.attributes.viewBox;
+  const svgStyle = jsonToStyle(formatSvgObj.attributes, svgStyleAttributes);
   // Iterate all child elements to convert svg to quasar svg format
-  const svgPath = svgObj.children
+  const svgPath = formatSvgObj.children
     .map((obj) => {
       // Extract styles and transformations
       const styles =
