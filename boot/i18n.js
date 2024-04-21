@@ -22,19 +22,23 @@ const i18n = createI18n({
   locale: "fa-IR",
   fallbackLocale: "en-US",
   formatFallbackMessages: true,
-  strictMessage: false,
-
-  missingWarn: false,
+  strictMessage: true,
+  fallbackRoot: true,
+  missingWarn: true,
   fallbackWarn: false,
   messages: parsedMessages,
   missing: (locale, key, instance, type) => {
+    console.log(key.replace(/^([^.]+\.)/, "").replace("**dot**", "."));
     return key.replace(/^([^.]+\.)/, "").replace("**dot**", ".");
   },
 });
 
 const mt = (moduleName, key, ...arg) => {
   // console.log(arg);
-  return i18n.global.t(`${moduleName}.${key.replace(".", "**dot**")}`, ...arg);
+  return i18n.global.t(
+    `${moduleName}.${key.replaceAll(".", "**dot**")}`,
+    ...arg
+  );
 
   // if (
   //   Object.prototype.hasOwnProperty.call(
