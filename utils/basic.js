@@ -76,6 +76,7 @@ export const rawSvgToSvgFormat = (rawSvg) => {
     "stroke-linecap",
     "stroke-linejoin",
     "fill",
+    "fill-rule",
     "opacity",
   ];
   const svgTransformAttributes = ["transform"];

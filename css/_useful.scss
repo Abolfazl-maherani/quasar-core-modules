@@ -27,35 +27,35 @@
 
 }
 .bg-primary-variant {
-  background: rgba($primary, 0.2) !important;
+  background: rgba($primary, 0.16) !important;
 }
 
 .bg-secondary-variant {
-  background: rgba($secondary, 0.2);
+  background: rgba($secondary, 0.16);
 }
 
 .bg-negative-variant {
-  background: rgba($negative, 0.2) !important;
+  background: rgba($negative, 0.16) !important;
 }
 
 .text-negative-variant {
-  color: rgba($negative, 0.2) !important;
+  color: rgba($negative, 0.16) !important;
 }
 
 .bg-warning-variant {
-  background: rgba($warning, 0.2) !important;
+  background: rgba($warning, 0.16) !important;
 }
 
 .text-warning-variant {
-  color: rgba($warning, 0.2) !important;
+  color: rgba($warning, 0.16) !important;
 }
 
 .bg-positive-variant {
-  background: rgba($positive, 0.2) !important;
+  background: rgba($positive, 0.16) !important;
 }
 
 .text-positive-variant {
-  color: rgba($positive, 0.2) !important;
+  color: rgba($positive, 0.16) !important;
 }
 
 .text-warning {
@@ -70,7 +70,7 @@
 }
 
 .border-primary-variant {
-  border-color: rgba($primary, 0.2);
+  border-color: rgba($primary, 0.16);
 }
 /* TODO: Fix selector for ignore every element that has `no-path-stroke` */
 .path-stroke :not(.no-path-stroke  svg,.no-path-stroke  svg path){
