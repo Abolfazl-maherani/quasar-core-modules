@@ -9,7 +9,6 @@
     <template v-if="$attrs?.children">
       <template :key="child" v-for="child in $attrs?.children">
         <NavigationItemVerticalGroup
-          mamad="hello"
           :header-inset-level="1"
           v-if="child?.children"
           v-bind="child"

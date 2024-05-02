@@ -69,7 +69,7 @@ export const countSlashes = (inputString) => {
   return inputString.split("/").length - 1;
 };
 
-export const rawSvgToSvgFormat = (rawSvg) => {
+export const rawSvgToSvgFormat = (rawSvg, isInfo = false) => {
   const svgStyleAttributes = [
     "stroke",
     "stroke-width",
@@ -89,7 +89,7 @@ export const rawSvgToSvgFormat = (rawSvg) => {
   // Get svg string content
   // Parse svg string to object
   let svgObj = parseSync(rawSvg);
-  console.log(svgObj);
+
   let formatSvgObj = {
     ...svgObj,
     children: [],
@@ -101,8 +101,8 @@ export const rawSvgToSvgFormat = (rawSvg) => {
         ...item.children?.map((child) => ({
           ...child,
           attributes: {
-            ...(child?.attributes || {}),
             ...(item?.attributes || {}),
+            ...(child?.attributes || {}),
           },
         }))
       );
@@ -118,15 +118,18 @@ export const rawSvgToSvgFormat = (rawSvg) => {
       // Extract styles and transformations
       const styles =
         jsonToStyle(obj.attributes, svgStyleAttributes) || svgStyle;
+
       const transformations = jsonToStyle(
         obj.attributes,
         svgTransformAttributes
-      );
+      ).replaceAll("transform:", "");
+
       // Convert element to path
       const path = toPath(obj)
         .replace(/[^A-Za-z0-9.-]/gm, " ")
         .replace(/\s\s+/g, " ");
       // Join path + styles + transformations with quasar format '@'
+
       return _.trim([path, styles, transformations].join("@@"), "@");
     })
     .join("&&");
