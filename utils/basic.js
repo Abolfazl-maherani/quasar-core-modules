@@ -69,7 +69,7 @@ export const countSlashes = (inputString) => {
   return inputString.split("/").length - 1;
 };
 
-export const rawSvgToSvgFormat = (rawSvg, isInfo = false) => {
+export const rawSvgToSvgFormat = (rawSvg) => {
   const svgStyleAttributes = [
     "stroke",
     "stroke-width",
