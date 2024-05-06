@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 export const useCore = () => {
   const { locale } = useI18n();
   const getLogo = computed(() => "/img/logo.png");
+  const getLogoSvg = computed(() => "/img/logo.svg");
   const getLogoWithName = computed(() => "/img/logo-with-name.png");
   const getDarkLogo = computed(() => "/img/logo-dark.png");
   const getCurrentLocale = computed(() => locale.value);
@@ -26,5 +27,6 @@ export const useCore = () => {
     findByValue,
     findByAttribute,
     findById,
+    getLogoSvg,
   };
 };
