@@ -28,7 +28,6 @@ const i18n = createI18n({
   fallbackWarn: false,
   messages: parsedMessages,
   missing: (locale, key, instance, type) => {
-    console.log(key.replace(/^([^.]+\.)/, "").replace("**dot**", "."));
     return key.replace(/^([^.]+\.)/, "").replace("**dot**", ".");
   },
 });
