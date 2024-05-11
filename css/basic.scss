@@ -3,6 +3,29 @@ html {
 }
 .q-btn.btn--no-hover .q-focus-helper{
   display: none;
+
 }
 
+[dir="rtl"]  .text-right{
+  /*rtl:begin:ignore*/
+  text-align: right;
+  /*rtl:end:ignore*/
+}
+
+[dir="ltr"]  .text-left{
+  /*rtl:begin:ignore*/
+  text-align: left;
+  /*rtl:end:ignore*/
+}
+
+.rtl-force{
+  /*rtl:begin:ignore*/
+  direction: rtl;
+  /*rtl:end:ignore*/
+}
+.ltr-force{
+  /*rtl:begin:ignore*/
+  direction: ltr;
+  /*rtl:end:ignore*/
+}
 
