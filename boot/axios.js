@@ -25,8 +25,8 @@ export default boot(({ app, store, ssrContext }) => {
       return request;
     });
   }
-  console.log(process.env);
-  console.log(coreStore.apiURL);
+
+  console.log(process.env.API_URL);
   axiosInstance.defaults.baseURL = coreStore.apiURL;
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
