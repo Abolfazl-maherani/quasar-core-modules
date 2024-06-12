@@ -42,7 +42,7 @@ export const useNotify = () => {
       type: "positive",
       position: "top",
       message: message,
-      timeout: 0,
+      timeout: 5000,
       ...opt,
     });
   };

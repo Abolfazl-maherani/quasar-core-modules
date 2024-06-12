@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
 import { LocalStorage, useMeta } from "quasar";
 import { useRoute } from "vue-router";
-
+import { i18n } from "src/modules/core/boot/i18n";
+import { toRaw } from "vue";
+import { Quasar } from "quasar";
 export const useCoreStore = defineStore("core", {
   state: () => ({
     apiURL: null,
@@ -19,7 +21,7 @@ export const useCoreStore = defineStore("core", {
     },
     getAxiosRequestHeaders() {
       let headers = {
-        "Accept-Language": this.language?.locale || "en-US",
+        "Accept-Language": this.language?.locale || Quasar.lang.isoName,
       };
 
       if (this.getToken) {

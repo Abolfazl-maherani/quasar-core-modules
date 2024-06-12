@@ -1,18 +1,22 @@
 import { computed } from "vue";
 import { useLocalStorage } from "@vueuse/core";
+import { LocalStorage } from "quasar";
 
 export const useAuth = () => {
-  const accessToken = useLocalStorage("access-token", null);
-  accessToken.value = "mam";
-  const getUser = {};
-  const getToken = computed(() => accessToken.value);
+  const getUser = computed(() => LocalStorage.getItem("user-data"));
+  const getToken = computed(() => LocalStorage.getItem("access-token"));
   const isLogin = computed(() => !!getToken.value);
-  const login = () => {};
-  const signin = () => {};
-  const setToken = () => {};
-
+  const setUser = (user) => {
+    LocalStorage.set("user-data", user);
+  };
+  const setToken = (token) => {
+    LocalStorage.set("access-token", token);
+  };
   return {
     getToken,
     isLogin,
+    getUser,
+    setToken,
+    setUser,
   };
 };

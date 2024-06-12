@@ -19,6 +19,7 @@ const parsedMessages = replaceDotInObjectKeys(messages);
 
 const i18n = createI18n({
   legacy: false,
+
   locale: "fa-IR",
   fallbackLocale: "en-US",
   formatFallbackMessages: true,
