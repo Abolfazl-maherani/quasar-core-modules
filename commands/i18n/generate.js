@@ -171,11 +171,11 @@ module.exports = function () {
           });
         }
 
-        fs.writeFileSync(
-          `./src/modules/app/i18n/${localeName}/index.js`,
-          localeFile,
-          "utf-8"
-        );
+        // fs.writeFileSync(
+        //   `./src/modules/app/i18n/${localeName}/index.js`,
+        //   localeFile,
+        //   "utf-8"
+        // );
 
         console.log(
           colors.green(`./src/modules/app/i18n/${localeName}/index.js saved.`)
