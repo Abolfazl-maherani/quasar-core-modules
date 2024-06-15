@@ -1,6 +1,7 @@
 import { parseSync } from "svgson";
 import _ from "lodash";
 import toPath from "element-to-path";
+import { isNumber } from "lodash/lang";
 
 export const concatURL = (baseURL, endpoint) => {
   // Check if the base URL ends with a slash and the endpoint starts with a slash
@@ -168,4 +169,17 @@ export const formatCurrency = (value, splitter = ",", symbol = null) => {
   }
 
   return 0;
+};
+export const addSeparator = (number, sep = ",") => {
+  if (number && isNumber(number))
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+};
+export const formatNumber = (number) => {
+  if (number < 1000) {
+    return number.toString();
+  } else if (number >= 1000 && number < 1000000) {
+    return (number / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  } else if (number >= 1000000) {
+    return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  }
 };
