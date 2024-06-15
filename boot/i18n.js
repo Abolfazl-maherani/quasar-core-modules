@@ -1,6 +1,7 @@
 import { boot } from "quasar/wrappers";
 import { createI18n } from "vue-i18n";
 import messages from "src/modules/app/i18n";
+import { indexOf } from "lodash/array";
 
 function replaceDotInObjectKeys(obj) {
   let result = {};
@@ -15,6 +16,7 @@ function replaceDotInObjectKeys(obj) {
   return result;
 }
 
+// Change format keys for example add **dot** to key  that has `.`
 const parsedMessages = replaceDotInObjectKeys(messages);
 
 const i18n = createI18n({
@@ -29,14 +31,20 @@ const i18n = createI18n({
   fallbackWarn: false,
   messages: parsedMessages,
   missing: (locale, key, instance, type) => {
+    const splitDot = key.split(".");
+
+    if (splitDot?.length) return splitDot[splitDot.length - 1];
     return key.replace(/^([^.]+\.)/, "").replace("**dot**", ".");
   },
 });
 
 const mt = (moduleName, key, ...arg) => {
   // console.log(arg);
+
   return i18n.global.t(
-    `${moduleName}.${key.replaceAll(".", "**dot**")}`,
+    `${moduleName}.${key
+      .replaceAll(".", "**dot**")
+      .replaceAll("**nest**", ".")}`,
     ...arg
   );
 
