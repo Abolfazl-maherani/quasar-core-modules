@@ -184,3 +184,50 @@ export const formatNumber = (number) => {
     return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
   }
 };
+export const acceptOnlyNumberInputText = (evt) => {
+  if (evt.which < 48 || evt.which > 57) {
+    evt.preventDefault();
+  }
+};
+export const isNumberInputText = (event) => {
+  const charCode = event.keyCode;
+  const metaKey = event.metaKey || event.ctrlKey;
+
+  // Allow Meta key combinations (e.g., Cmd+C, Cmd+V)
+  if (metaKey) {
+    return;
+  }
+  // Allow Backspace, Tab, Enter, Arrow keys, and Delete
+  if (
+    charCode === 8 || // Backspace
+    charCode === 9 || // Tab
+    charCode === 13 || // Enter
+    charCode === 37 || // Left Arrow
+    charCode === 39 || // Right Arrow
+    charCode === 46 // Delete
+  ) {
+    return;
+  }
+
+  // Allow number keys (0-9) and numpad number keys (0-9)
+  if (
+    (charCode < 48 || charCode > 57) && // Number keys
+    (charCode < 96 || charCode > 105) // Numpad number keys
+  ) {
+    event.preventDefault();
+  }
+};
+// Function to clear URL query string without reloading the page
+export const clearQueryString = () => {
+  if (process.env.CLIENT) {
+    // Construct the new URL without the query string
+    const url =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+
+    // Use history.replaceState to modify the current URL
+    window.history.replaceState({ path: url }, "", url);
+  }
+};

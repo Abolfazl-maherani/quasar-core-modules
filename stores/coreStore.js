@@ -16,6 +16,9 @@ export const useCoreStore = defineStore("core", {
     themeConfig: null,
   }),
   getters: {
+    getUser() {
+      return this.user || LocalStorage.getItem("user-data") || null;
+    },
     getToken() {
       return this.token || LocalStorage.getItem("access-token") || null;
     },
@@ -23,11 +26,9 @@ export const useCoreStore = defineStore("core", {
       let headers = {
         "Accept-Language": this.language?.locale || Quasar.lang.isoName,
       };
-
       if (this.getToken) {
         headers["Authorization"] = "Bearer " + this.getToken;
       }
-
       return headers;
     },
     getMeta() {
@@ -126,13 +127,12 @@ export const useCoreStore = defineStore("core", {
     setLanguage(value) {
       this.language = value;
     },
+    setUser(value) {
+      this.user = value;
+    },
     setToken(value) {
       this.token = value;
-      LocalStorage.set("app.token", value);
     },
-    // setUser(value) {
-    //   this.user = value;
-    // },
     setMeta(payload) {
       let newMeta = JSON.parse(JSON.stringify(this.meta));
       if (!newMeta) {

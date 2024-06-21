@@ -1,18 +1,19 @@
 import { computed, onBeforeMount } from "vue";
 import { LocalStorage } from "quasar";
-import { useAppStore } from "src/modules/app/stores/appStore";
+
 import { userServices } from "src/modules/app/services/user.services";
+import { useCoreStore } from "src/modules/core/stores/coreStore";
 // todo: use only core store
 export const useAuth = () => {
-  const appStore = useAppStore();
+  const coreStore = useCoreStore();
 
-  const getUser = computed(() => appStore.getUser);
-  const getToken = computed(() => appStore.getToken);
+  const getUser = computed(() => coreStore.getUser);
+  const getToken = computed(() => coreStore.getToken);
   const isLogin = computed(() => !!(getToken.value && getUser.value));
   const setUser = (userValue) => {
     try {
       LocalStorage.set("user-data", userValue);
-      appStore.setUser(userValue);
+      coreStore.setUser(userValue);
     } catch (err) {
       console.log(err);
     }
@@ -21,7 +22,7 @@ export const useAuth = () => {
   const setToken = (tokenValue) => {
     try {
       LocalStorage.set("access-token", tokenValue);
-      appStore.setToken(tokenValue);
+      coreStore.setToken(tokenValue);
     } catch (err) {
       console.log(err);
     }
@@ -29,8 +30,8 @@ export const useAuth = () => {
   const logout = () => {
     LocalStorage.remove("access-token");
     LocalStorage.remove("user-data");
-    appStore.setUser(null);
-    appStore.setToken(null);
+    coreStore.setUser(null);
+    coreStore.setToken(null);
   };
   const fetchProfile = () => {
     return new Promise((resolve, reject) => {
