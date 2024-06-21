@@ -1,13 +1,10 @@
 import { computed, onBeforeMount } from "vue";
 import { LocalStorage } from "quasar";
 import { useAppStore } from "src/modules/app/stores/appStore";
-
+import { userServices } from "src/modules/app/services/user.services";
+// todo: use only core store
 export const useAuth = () => {
   const appStore = useAppStore();
-  onBeforeMount(() => {
-    appStore.setUser(LocalStorage.getItem("user-data"));
-    appStore.setToken(LocalStorage.getItem("access-token"));
-  });
 
   const getUser = computed(() => appStore.getUser);
   const getToken = computed(() => appStore.getToken);
@@ -35,6 +32,19 @@ export const useAuth = () => {
     appStore.setUser(null);
     appStore.setToken(null);
   };
+  const fetchProfile = () => {
+    return new Promise((resolve, reject) => {
+      userServices
+        .getProfile()
+        .then(({ data }) => {
+          if (data?.data) {
+            setUser(data?.data?.user);
+            resolve(data?.data?.user);
+          }
+        })
+        .catch((err) => reject(err));
+    });
+  };
   return {
     getToken,
     isLogin,
@@ -42,5 +52,6 @@ export const useAuth = () => {
     setToken,
     logout,
     setUser,
+    fetchProfile,
   };
 };

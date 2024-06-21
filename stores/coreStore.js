@@ -17,7 +17,7 @@ export const useCoreStore = defineStore("core", {
   }),
   getters: {
     getToken() {
-      return this.token || LocalStorage.getItem("app.token") || null;
+      return this.token || LocalStorage.getItem("access-token") || null;
     },
     getAxiosRequestHeaders() {
       let headers = {

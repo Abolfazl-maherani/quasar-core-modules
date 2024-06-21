@@ -171,6 +171,7 @@ export const formatCurrency = (value, splitter = ",", symbol = null) => {
   return 0;
 };
 export const addSeparator = (number, sep = ",") => {
+  if (number < 100) return number;
   if (number && isNumber(number))
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep);
 };
