@@ -65,8 +65,11 @@
 .text-warning {
 }
 
+.text-primary-variant-bg {
+  color:rgba($primary, 0.16) !important;
+}
 .text-primary-variant {
-  color: $primary !important;
+  color:$primary
 }
 
 .text-secondary-variant {

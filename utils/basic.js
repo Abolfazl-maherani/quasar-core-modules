@@ -231,3 +231,17 @@ export const clearQueryString = () => {
     window.history.replaceState({ path: url }, "", url);
   }
 };
+export const parseJson = (str) => {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    console.error("Can`t parse str to json:", str);
+  }
+};
+export const toJson = (obj) => {
+  try {
+    return JSON.stringify(obj);
+  } catch (e) {
+    console.error("Can`t convert to json:", obj);
+  }
+};
