@@ -231,6 +231,20 @@ export const clearQueryString = () => {
     window.history.replaceState({ path: url }, "", url);
   }
 };
+export const clearHash = () => {
+  if (process.env.CLIENT) {
+    // Construct the new URL without the query string
+    const url =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname +
+      window.location.search;
+
+    // Use history.replaceState to modify the current URL
+    window.history.replaceState({ path: url }, "", url);
+  }
+};
 export const parseJson = (str) => {
   try {
     return JSON.parse(str);
