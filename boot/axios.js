@@ -24,7 +24,7 @@ export default boot(({ app, store, ssrContext }) => {
 
   if (ssrContext) {
     coreStore.setApiURL(
-      ssrContext.req.headers?.["api-host"] || process.env.API_URL
+      /*ssrContext.req.headers?.["api-host"] ||*/ process.env.API_URL
     );
   } else {
     axiosInstance.interceptors.request.use((request) => {
